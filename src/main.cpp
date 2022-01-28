@@ -1,9 +1,10 @@
 /************************************************************************************ 
- *painlessMesh for ESP32 running with freeRTOS
+ * painlessMesh for ESP32 running with freeRTOS
  * Tasks:
  * meshNetwork - core 0, runs mesh network by running mesh.update frequently to keep up with the network
  * sensorMonitoring - core 1, polls sensors for data
-
+ * 
+ * 
  ***********************************************************************************/
 #include "painlessMesh.h"
 
