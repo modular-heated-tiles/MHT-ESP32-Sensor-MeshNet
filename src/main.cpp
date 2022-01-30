@@ -7,9 +7,8 @@
  * 
  ***********************************************************************************/
 #include "painlessMesh.h"
+#include "credentials.h"
 
-#define   MESH_PREFIX     "whateverYouLike"
-#define   MESH_PASSWORD   "somethingSneaky"
 #define   MESH_PORT       5555
 
 painlessMesh  mesh;
@@ -66,11 +65,13 @@ void meshNetwork(void *pvParameters)  // This is a task.
 
   mesh.setDebugMsgTypes( ERROR | STARTUP );  // set before init() so that you can see startup messages
 
-  mesh.init( MESH_PREFIX, MESH_PASSWORD, MESH_PORT );
+  mesh.init(MESH_NET_SSID, MESH_NET_PASSWORD, MESH_PORT );
   mesh.onReceive(&receivedCallback);
   mesh.onNewConnection(&newConnectionCallback);
   mesh.onChangedConnections(&changedConnectionCallback);
   mesh.onNodeTimeAdjusted(&nodeTimeAdjustedCallback);
+  // establish the existance of a root node in the network 
+  mesh.setContainsRoot(true);
   for (;;) // A Task shall never return or exit.
   {
     mesh.update();
